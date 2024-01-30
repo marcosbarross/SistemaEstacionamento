@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Inicie a atividade MapsActivity aqui
-                    val intent = Intent(this, MapsActivity::class.java)
-                    startActivity(intent)
+                    val mapActivity = Intent(this, MapsActivity::class.java)
+                    startActivity(mapActivity)
                 }
             }
         }
