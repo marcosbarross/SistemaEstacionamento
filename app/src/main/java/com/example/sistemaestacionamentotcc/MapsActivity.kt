@@ -1,6 +1,7 @@
 package com.example.sistemaestacionamentotcc
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -40,7 +42,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 map!!.mapType = GoogleMap.MAP_TYPE_NORMAL
             }
             R.id.satellite_map -> {
-                map!!.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                map!!.mapType = GoogleMap.MAP_TYPE_HYBRID
             }
         }
         return true
@@ -56,5 +58,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             isZoomControlsEnabled = true
             isMyLocationButtonEnabled = true
         }
+        setMapStyle(map!!)
     }
+
+    private fun setMapStyle(googleMap: GoogleMap){
+        try {
+            val sucess = googleMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    this, R.raw.stylemap
+                )
+            )
+            if (!sucess) {
+                Log.d("Maps", "Erro ao estilizar o mapa.")
+            }
+        }catch (e: Exception){
+            Log.d("Maps", "Erro ao estilizar o mapa.")
+        }
+    }
+
 }
