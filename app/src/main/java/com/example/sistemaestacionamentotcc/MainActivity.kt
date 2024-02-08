@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Inicie a atividade MapsActivity aqui
                     val mapActivity = Intent(this, MapsActivity::class.java)
                     startActivity(mapActivity)
                 }

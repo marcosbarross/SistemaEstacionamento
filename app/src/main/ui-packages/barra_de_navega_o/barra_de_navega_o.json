@@ -1,0 +1,228 @@
+{
+  "name": "barra_de_navega_o",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "jGqHGEqkpWuN2dK6KBupQk",
+    "node": "12:85",
+    "version": "5114306563",
+    "component-id": "351ca78ff49a6787bb4fcca00eb960a3917ad025"
+  },
+  "default": "Barra de navegação",
+  "documentation": "Barra de navegação do aplicativo",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Navigation bar"
+      },
+      {
+        "type": "group",
+        "id": "🦆 icon \"menu\""
+      },
+      {
+        "type": "group",
+        "id": "🦆 icon \"location\""
+      },
+      {
+        "type": "group",
+        "id": "🦆 icon \"plus\""
+      },
+      {
+        "type": "vector",
+        "id": "Lista"
+      },
+      {
+        "type": "vector",
+        "id": "Mapa"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      }
+    ],
+    "modes": {
+      "Barra de navegação": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Navigation bar",
+              "🦆 icon \"menu\"",
+              "🦆 icon \"location\"",
+              "🦆 icon \"plus\""
+            ]
+          },
+          {
+            "id": "Navigation bar",
+            "border-radius": "13.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "6.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "360.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "85.0"
+              }
+            },
+            "vector-content": "navigation_bar.svg"
+          },
+          {
+            "id": "🦆 icon \"menu\"",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "267.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "24.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "children": [
+              "Lista"
+            ],
+            "item-spacing": "10.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "🦆 icon \"location\"",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "55.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "23.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Mapa"
+            ],
+            "item-spacing": "10.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "🦆 icon \"plus\"",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "157.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "24.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Vector"
+            ],
+            "item-spacing": "10.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Lista",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "37.039031982421875"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "34.566505432128906"
+              }
+            },
+            "vector-content": "lista.svg"
+          },
+          {
+            "id": "Mapa",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "35.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "35.0"
+              }
+            },
+            "vector-content": "mapa.svg"
+          },
+          {
+            "id": "Vector",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "34.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Barra de navegação",
+      "size": {
+        "width": 360.0,
+        "height": 71.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

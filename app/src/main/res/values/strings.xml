@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SistemaEstacionamentoTCC</string>
+    <string name="title_activity_maps">Estacionamentos</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBAw4FC2o5dsjTmPZY3gAr0xu2ChzTPDFo</string>
+    <string name="normal">Normal</string>
+    <string name="satelite">Satelite</string>
+    <string name="title_activity_action_bar_main">ActionBarMain</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main2">MainActivity2</string>
+</resources>
