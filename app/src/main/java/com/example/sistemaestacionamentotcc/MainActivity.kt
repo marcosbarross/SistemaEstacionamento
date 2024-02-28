@@ -1,21 +1,34 @@
 package com.example.sistemaestacionamentotcc
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.sistemaestacionamentotcc.ui.theme.SistemaEstacionamentoTCCTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.sistemaestacionamentotcc.databinding.ActivityActionBarMainBinding
+import com.example.sistemaestacionamentotcc.ui.cadastro.cadastro
+import com.example.sistemaestacionamentotcc.ui.lista.lista
+import com.example.sistemaestacionamentotcc.ui.mapa.Mapa
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityActionBarMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityActionBarMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //replaceFragment(Mapa())
+
+        binding.navView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.maps -> replaceFragment(Mapa())
+                R.id.add -> replaceFragment(cadastro())
+                R.id.list -> replaceFragment(lista())
+
+                else -> { }
+
+            }
+            true
+        }
+        /**
         setContent {
             SistemaEstacionamentoTCCTheme {
                 // A surface container using the 'background' color from the theme
@@ -27,22 +40,12 @@ class MainActivity : ComponentActivity() {
                     startActivity(mapActivity)
                 }
             }
-        }
+        } **/
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SistemaEstacionamentoTCCTheme {
-        Greeting("Android")
+    private fun replaceFragment(fragment : Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.commit()
     }
 }

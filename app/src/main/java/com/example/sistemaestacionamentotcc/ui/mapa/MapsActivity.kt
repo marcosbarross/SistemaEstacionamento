@@ -1,12 +1,11 @@
-package com.example.sistemaestacionamentotcc
+package com.example.sistemaestacionamentotcc.ui.mapa
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import com.example.sistemaestacionamentotcc.R
 import com.example.sistemaestacionamentotcc.databinding.ActivityMapsBinding
 import com.example.sistemaestacionamentotcc.misc.TypeAndStyle
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -14,7 +13,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -31,7 +29,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding!!.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
     }
 

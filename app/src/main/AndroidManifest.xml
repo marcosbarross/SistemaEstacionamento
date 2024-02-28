@@ -16,15 +16,22 @@
         android:theme="@style/Theme.SistemaEstacionamentoTCC"
         tools:targetApi="31">
         <activity
+            android:name=".ui.lista.lista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.cadastro.cadastro"
+            android:exported="false" />
+        <activity
             android:name=".ActionBarMain"
             android:exported="false"
             android:label="@string/title_activity_action_bar_main" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.mapa.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
