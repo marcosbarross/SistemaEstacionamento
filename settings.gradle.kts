@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SistemaEstacionamentoTCC"
+rootProject.name = "ParkingSystem"
 include(":app")

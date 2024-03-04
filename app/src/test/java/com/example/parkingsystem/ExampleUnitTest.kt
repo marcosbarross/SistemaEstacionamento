@@ -1,4 +1,4 @@
-package com.example.sistemaestacionamentotcc
+package com.example.parkingsystem
 
 import org.junit.Test
 
