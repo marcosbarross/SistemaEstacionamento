@@ -34,7 +34,7 @@ class Estacionamento(BaseModel):
 app = FastAPI()
 
 # Endpoint para salvar um novo estacionamento
-@app.post("/estacionamento/")
+@app.post("/AddEstacionamento/")
 async def criar_estacionamento(estacionamento: Estacionamento):
     cur.execute("""
         INSERT INTO estacionamentos (nome, preco, latitude, longitude)
@@ -46,7 +46,7 @@ async def criar_estacionamento(estacionamento: Estacionamento):
     return {"id": id, **estacionamento.dict()}
 
 # Endpoint para retornar todos os estacionamentos salvos
-@app.get("/estacionamentos/")
+@app.get("/GetEstacionamentos/")
 async def listar_estacionamentos():
     cur.execute("SELECT * FROM estacionamentos")
     estacionamentos = []
