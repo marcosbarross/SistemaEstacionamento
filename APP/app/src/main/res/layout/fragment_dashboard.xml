@@ -9,25 +9,59 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/estacionamentoNomeLabel"
+        android:layout_width="308dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="sans-serif-black"
+        android:layout_gravity="right"
+        android:fontFamily="sans-serif"
         android:text="Nome do estacionamento"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/teal_700"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/estacionamentoNomeField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:inputType="text" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50px" />
+
+    <TextView
+        android:id="@+id/estacionamentoPrecoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preço"
+        android:textAlignment="center"
+        android:textColor="@color/teal_700"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/estacionamentoPrecoField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:inputType="text" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50px" />
+
+    <TextView
+        android:id="@+id/estacionemntoFuncionamentoLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Funcionamento"
+        android:textAlignment="center"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -47,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Abre às"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp" />
 
             <TextView
@@ -54,6 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fecha às"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -77,5 +113,45 @@
                 android:inputType="time" />
         </TableRow>
     </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/radioButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90º" />
+
+            <RadioButton
+                android:id="@+id/radioButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="45º" />
+
+            <RadioButton
+                android:id="@+id/radioButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="baliza" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:textStyle="bold" />
 
 </LinearLayout>
