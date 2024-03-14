@@ -5,6 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
+    <!-- Definição dos fragmentos -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.parkingsystem.ui.home.HomeFragment"
@@ -22,4 +23,9 @@
         android:name="com.example.parkingsystem.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <!-- Definição da ação de navegação -->
+    <action
+        android:id="@+id/action_home_to_dashboard"
+        app:destination="@id/navigation_dashboard" />
 </navigation>

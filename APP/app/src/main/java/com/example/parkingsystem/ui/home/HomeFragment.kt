@@ -1,12 +1,13 @@
 package com.example.parkingsystem.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.parkingsystem.API.apiUtils.Companion.getRetrofitInstance
+import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.databinding.FragmentHomeBinding
 import com.example.parkingsystem.models.pontos
 import com.google.android.gms.maps.GoogleMap
@@ -15,8 +16,12 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.location.LocationServices
 import android.widget.Toast
-import com.example.parkingsystem.API.PontosService
+import androidx.navigation.fragment.findNavController
+import com.example.parkingsystem.R
+import com.example.parkingsystem.controllers.APIControllers.PontosService
+import com.example.parkingsystem.controllers.permissionsControllers.PermissionController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,6 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var mapView: MapView
     private lateinit var mMap: GoogleMap
     private lateinit var floatingActionButton : FloatingActionButton
+    private lateinit var permissionController: PermissionController
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,6 +46,7 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        permissionController = PermissionController(requireActivity())
         val root: View = binding.root
 
         floatingActionButton = binding.floatingActionButton
@@ -49,17 +56,31 @@ class HomeFragment : Fragment() {
 
         mapView.getMapAsync { googleMap ->
             mMap = googleMap
-
             mMap.setPadding(0,0,0,200)
+            
+            permissionController.checkLocationPermission(mMap)
 
             mMap.uiSettings.apply {
                 isZoomControlsEnabled = true
                 isMyLocationButtonEnabled = true
             }
-        }
 
+            // Move a câmera para a localização atual do dispositivo quando disponível
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    location?.let {
+                        val currentLatLng = LatLng(location.latitude, location.longitude)
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                    }
+                }
+            mMap.setOnMapLongClickListener{
+                findNavController().navigate(R.id.action_home_to_dashboard)
+            }
+        }
         floatingActionButton.setOnClickListener {
-            val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(PontosService::class.java)
+            val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(
+                PontosService::class.java)
             val call = pontosService.getPoints()
 
             call.enqueue(object : Callback<List<pontos>> {
@@ -68,7 +89,8 @@ class HomeFragment : Fragment() {
                         val pontos = response.body()
                         pontos?.forEach { ponto ->
                             val posicao = LatLng(ponto.latitude, ponto.longitude)
-                            mMap.addMarker(MarkerOptions().position(posicao).title(ponto.nome))
+                            mMap.addMarker(MarkerOptions().position(posicao).title(ponto.nome).snippet(
+                                "Preço: R$" + ponto.preco.toString()))
                         }
                         val builder = LatLngBounds.Builder()
                         pontos?.forEach { ponto ->
@@ -88,8 +110,7 @@ class HomeFragment : Fragment() {
                         Toast.makeText(requireContext(), "Falha ao obter os pontos", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-
+                
                 override fun onFailure(call: Call<List<pontos>>, t: Throwable) {
                     Log.e("NETWORK_ERROR", "Erro de conexão: ${t.message}", t)
                     Toast.makeText(requireContext(), "Erro de conexão", Toast.LENGTH_SHORT).show()

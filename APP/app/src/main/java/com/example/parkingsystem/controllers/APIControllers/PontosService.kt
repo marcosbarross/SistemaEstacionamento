@@ -1,4 +1,4 @@
-package com.example.parkingsystem.API
+package com.example.parkingsystem.controllers.APIControllers
 
 import com.example.parkingsystem.models.pontos
 import retrofit2.Call

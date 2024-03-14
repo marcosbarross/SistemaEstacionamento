@@ -4,29 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#111A28"
     android:orientation="vertical"
-    android:background="@color/background_color"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
         android:id="@+id/estacionamentoNomeLabel"
         android:layout_width="308dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:fontFamily="sans-serif"
         android:text="Nome do estacionamento"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/background_color"
         android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/estacionamentoNomeField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:ems="10"
-        android:inputType="text" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nomeInput"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Digite o nome do estacionamento" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Space
         android:layout_width="match_parent"
@@ -38,16 +42,19 @@
         android:layout_height="wrap_content"
         android:text="Preço"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/background_color"
         android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/estacionamentoPrecoField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:ems="10"
-        android:inputType="text" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Digite o preço do estacionamento" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Space
         android:layout_width="match_parent"
@@ -59,7 +66,7 @@
         android:layout_height="wrap_content"
         android:text="Funcionamento"
         android:textAlignment="center"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/background_color"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -81,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Abre às"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/background_color"
                 android:textSize="16sp" />
 
             <TextView
@@ -89,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fecha às"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/background_color"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -114,41 +121,70 @@
         </TableRow>
     </TableLayout>
 
-    <TableLayout
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50px" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RadioButton
-                android:id="@+id/radioButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="90º" />
-
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45º" />
-
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="baliza" />
-
-        </TableRow>
-    </TableLayout>
+    <TextView
+        android:id="@+id/tipoVagaLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo de vaga"
+        android:textAlignment="center"
+        android:textColor="@color/background_color"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="150px" />
+        android:layout_height="50px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="131dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/garagem" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="132dp"
+            android:layout_height="114dp"
+            android:src="@mipmap/noventa" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="109dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@mipmap/baliza" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50px" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
