@@ -21,9 +21,6 @@ import retrofit2.Response
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var submitButton : Button
     private lateinit var nomeInput : TextInputEditText
@@ -37,22 +34,16 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Initialize your views here
         submitButton = root.findViewById(R.id.submitButton)
         nomeInput = root.findViewById(R.id.nomeInput)
         precoInput = root.findViewById(R.id.precoInput)
 
-        // Set click listener after initializing the submitButton
         submitButton.setOnClickListener {
             val nomeEstacionamento = nomeInput.text.toString()
             val precoEstacionamento = precoInput.text.toString()
-
             val ponto = pontos(nomeEstacionamento, precoEstacionamento.toDouble(), HomeFragment.longitude, HomeFragment.latitude)
-
-            // Obtenha uma instância do serviço de pontos
             val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(PontosService::class.java)
 
-            // Chame o método addPoint na instância do serviço de pontos
             val call = pontosService.addPoint(ponto)
             call.enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
