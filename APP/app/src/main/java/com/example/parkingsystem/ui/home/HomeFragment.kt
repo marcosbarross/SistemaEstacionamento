@@ -1,6 +1,5 @@
 package com.example.parkingsystem.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -74,9 +73,14 @@ class HomeFragment : Fragment() {
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
                     }
                 }
-            mMap.setOnMapLongClickListener{
+
+            mMap.setOnMapLongClickListener{latLng ->
+                latitude = latLng.latitude
+                longitude = latLng.longitude
+
                 findNavController().navigate(R.id.action_home_to_dashboard)
             }
+
         }
         floatingActionButton.setOnClickListener {
             val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(
@@ -144,5 +148,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        var longitude: Double = 0.00
+        var latitude : Double = 0.00
     }
 }
