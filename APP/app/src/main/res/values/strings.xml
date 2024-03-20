@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ParkingSystem</string>
+    <string name="title_login">Login</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Cadastrar</string>
     <string name="title_notifications">Lista</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

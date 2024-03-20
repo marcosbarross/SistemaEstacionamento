@@ -16,4 +16,9 @@
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/title_notifications" />
 
+    <item
+        android:id="@+id/navigation_login"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="@string/title_login" />
+
 </menu>

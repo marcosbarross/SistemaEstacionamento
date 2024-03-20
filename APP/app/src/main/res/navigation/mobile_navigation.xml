@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
-    <!-- Definição dos fragmentos -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.parkingsystem.ui.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login" />
+
+    <!-- Definição dos outros fragmentos -->
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.parkingsystem.ui.home.HomeFragment"
@@ -17,6 +23,12 @@
         android:name="com.example.parkingsystem.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.parkingsystem.ui.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/navigation_notifications"
