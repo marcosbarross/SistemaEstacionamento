@@ -19,7 +19,14 @@ cur.execute("""
         preco NUMERIC(10, 2) NOT NULL,
         latitude NUMERIC(10, 6) NOT NULL,
         longitude NUMERIC(10, 6) NOT NULL
-    )
+    );
+
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        senha VARCHAR(100) NOT NULL
+    );
 """)
 conn.commit()
 
@@ -29,6 +36,11 @@ class Estacionamento(BaseModel):
     preco: float
     latitude: float
     longitude: float
+
+class Usuario(BaseModel):
+    nome: str
+    email: str
+    senha: str
 
 # Inicializar a aplicação FastAPI
 app = FastAPI()
@@ -54,3 +66,15 @@ async def listar_estacionamentos():
         id, nome, preco, latitude, longitude = row
         estacionamentos.append({"id": id, "nome": nome, "preco": preco, "latitude": latitude, "longitude": longitude})
     return estacionamentos
+
+# Endpoint para salvar um novo usuário
+@app.post("/AddUsuario/")
+async def criar_usuario(usuario: Usuario):
+    cur.execute("""
+        INSERT INTO usuarios (nome, email, senha)
+        VALUES (%s, %s, %s)
+        RETURNING id
+""", (usuario.nome, usuario.email, usuario.senha))
+    id = cur.fetchone()[0]
+    conn.commit()
+    return {"id": id, **usuario.dict()}
