@@ -5,15 +5,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class apiUtils {
     companion object {
+        val path = "http://10.0.0.143:8000/"
 
-        /** Retorna uma Instância do Client Retrofit para Requisições
-         * @param path Caminho Principal da API
-         */
-        fun getRetrofitInstance(path : String) : Retrofit {
+        fun getRetrofitInstance(path: String): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(path)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+        }
+
+        fun getPathString(): String {
+            return path
         }
     }
 }

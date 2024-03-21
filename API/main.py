@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List
 import psycopg2
@@ -42,6 +42,10 @@ class Usuario(BaseModel):
     email: str
     senha: str
 
+class UsuarioAuth(BaseModel):
+    email: str
+    senha: str
+
 # Inicializar a aplicação FastAPI
 app = FastAPI()
 
@@ -55,7 +59,7 @@ async def criar_estacionamento(estacionamento: Estacionamento):
     """, (estacionamento.nome, estacionamento.preco, estacionamento.latitude, estacionamento.longitude))
     id = cur.fetchone()[0]
     conn.commit()
-    return {"id": id, **estacionamento.dict()}
+    return {"id": id, **estacionamento.model_dump()}
 
 # Endpoint para retornar todos os estacionamentos salvos
 @app.get("/GetEstacionamentos/")
@@ -67,6 +71,23 @@ async def listar_estacionamentos():
         estacionamentos.append({"id": id, "nome": nome, "preco": preco, "latitude": latitude, "longitude": longitude})
     return estacionamentos
 
+# Endpoint para autenticar usuário
+@app.post("/AutenticarUsuario/")
+async def autenticar_usuario(usuario: UsuarioAuth):
+    email = usuario.email
+    senha = usuario.senha
+    cur.execute("SELECT id, nome, email, senha FROM usuarios WHERE email = %s", (email,))
+    usuario = cur.fetchone()
+    if usuario is None:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
+    
+    id, nome, email_db, senha_db = usuario
+    if senha == senha_db:
+        return {"status_code": 200}
+    else:
+        raise HTTPException(status_code=401, detail="Credenciais inválidas")
+
+
 # Endpoint para salvar um novo usuário
 @app.post("/AddUsuario/")
 async def criar_usuario(usuario: Usuario):
@@ -77,4 +98,4 @@ async def criar_usuario(usuario: Usuario):
 """, (usuario.nome, usuario.email, usuario.senha))
     id = cur.fetchone()[0]
     conn.commit()
-    return {"id": id, **usuario.dict()}
+    return {"id": id, **usuario.model_dump()}

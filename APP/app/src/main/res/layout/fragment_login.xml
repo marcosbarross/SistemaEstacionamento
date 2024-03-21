@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/LoginLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login" />
@@ -29,6 +29,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail" />
@@ -40,7 +41,7 @@
             android:layout_height="50px" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/passwordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Senha" />
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Senha" />

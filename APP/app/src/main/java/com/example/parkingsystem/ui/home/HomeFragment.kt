@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.PontosService
+import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.permissionsControllers.PermissionController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -83,7 +84,7 @@ class HomeFragment : Fragment() {
 
         }
         floatingActionButton.setOnClickListener {
-            val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(
+            val pontosService = getRetrofitInstance(getPathString()).create(
                 PontosService::class.java)
             val call = pontosService.getPoints()
 

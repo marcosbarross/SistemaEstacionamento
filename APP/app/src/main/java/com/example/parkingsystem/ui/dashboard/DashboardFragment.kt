@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.parkingsystem.R
 import com.example.parkingsystem.databinding.FragmentDashboardBinding
 import com.example.parkingsystem.controllers.APIControllers.PontosService
+import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
 import com.example.parkingsystem.ui.home.HomeFragment
@@ -42,7 +43,7 @@ class DashboardFragment : Fragment() {
             val nomeEstacionamento = nomeInput.text.toString()
             val precoEstacionamento = precoInput.text.toString()
             val ponto = pontos(nomeEstacionamento, precoEstacionamento.toDouble(), HomeFragment.longitude, HomeFragment.latitude)
-            val pontosService = getRetrofitInstance("http://192.168.1.113:8000/").create(PontosService::class.java)
+            val pontosService = getRetrofitInstance(getPathString()).create(PontosService::class.java)
 
             val call = pontosService.addPoint(ponto)
             call.enqueue(object : Callback<Void> {
