@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.home
+package com.example.parkingsystem.ui.mapa
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
-import com.example.parkingsystem.databinding.FragmentHomeBinding
+import com.example.parkingsystem.databinding.FragmentMapaBinding
 import com.example.parkingsystem.models.pontos
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -27,9 +27,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment() {
+class MapaFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMapaBinding? = null
     private lateinit var mapView: MapView
     private lateinit var mMap: GoogleMap
     private lateinit var floatingActionButton : FloatingActionButton
@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMapaBinding.inflate(inflater, container, false)
         permissionController = PermissionController(requireActivity())
         val root: View = binding.root
 

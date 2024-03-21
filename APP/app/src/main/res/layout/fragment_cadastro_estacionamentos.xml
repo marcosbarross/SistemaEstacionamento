@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#111A28"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.cadastroEstacionamentos.CadastroEstacionamentoFragment">
 
     <TextView
         android:id="@+id/estacionamentoNomeLabel"

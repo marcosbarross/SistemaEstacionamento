@@ -14,15 +14,15 @@
     <!-- Definição dos outros fragmentos -->
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.parkingsystem.ui.home.HomeFragment"
+        android:name="com.example.parkingsystem.ui.mapa.MapaFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_mapa" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.parkingsystem.ui.dashboard.DashboardFragment"
+        android:name="com.example.parkingsystem.ui.cadastroEstacionamentos.CadastroEstacionamentoFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_cadastro_estacionamentos" />
 
     <fragment
         android:id="@+id/navigation_login"
@@ -32,9 +32,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.parkingsystem.ui.notifications.NotificationsFragment"
+        android:name="com.example.parkingsystem.ui.lista.ListaFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_lista" />
 
     <!-- Definição da ação de navegação -->
     <action

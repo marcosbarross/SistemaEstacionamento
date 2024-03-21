@@ -1,15 +1,15 @@
-package com.example.parkingsystem.ui.notifications
+package com.example.parkingsystem.ui.lista
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.parkingsystem.databinding.FragmentNotificationsBinding
+import com.example.parkingsystem.databinding.FragmentListaBinding
 
-class NotificationsFragment : Fragment() {
+class ListaFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentListaBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentListaBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
