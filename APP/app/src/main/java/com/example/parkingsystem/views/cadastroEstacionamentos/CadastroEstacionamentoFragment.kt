@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.cadastroEstacionamentos
+package com.example.parkingsystem.views.cadastroEstacionamentos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
-import com.example.parkingsystem.ui.mapa.MapaFragment
+import com.example.parkingsystem.views.mapa.MapaFragment
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback

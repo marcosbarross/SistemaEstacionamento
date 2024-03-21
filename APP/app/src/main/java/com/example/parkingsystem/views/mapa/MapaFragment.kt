@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.mapa
+package com.example.parkingsystem.views.mapa
 
 import android.os.Bundle
 import android.util.Log
@@ -79,7 +79,7 @@ class MapaFragment : Fragment() {
                 latitude = latLng.latitude
                 longitude = latLng.longitude
 
-                findNavController().navigate(R.id.action_home_to_dashboard)
+                findNavController().navigate(R.id.action_home_to_cadastro_estacionamentos)
             }
 
         }

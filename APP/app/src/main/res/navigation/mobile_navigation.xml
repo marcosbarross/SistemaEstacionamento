@@ -3,41 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_mapa">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.parkingsystem.ui.login.LoginFragment"
+        android:name="com.example.parkingsystem.views.login.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
 
     <!-- Definição dos outros fragmentos -->
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.parkingsystem.ui.mapa.MapaFragment"
+        android:id="@+id/navigation_mapa"
+        android:name="com.example.parkingsystem.views.mapa.MapaFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_mapa" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.parkingsystem.ui.cadastroEstacionamentos.CadastroEstacionamentoFragment"
+        android:id="@+id/navigation_cadastro_estacionamento"
+        android:name="com.example.parkingsystem.views.cadastroEstacionamentos.CadastroEstacionamentoFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_cadastro_estacionamentos" />
 
     <fragment
+        android:id="@+id/navigation_cadastro"
+        android:name="com.example.parkingsystem.views.cadastro.CadastroFragment"
+        android:label="@string/title_cadastro"
+        tools:layout="@layout/fragment_cadastro" />
+
+    <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.parkingsystem.ui.login.LoginFragment"
+        android:name="com.example.parkingsystem.views.login.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.parkingsystem.ui.lista.ListaFragment"
+        android:id="@+id/navigation_lista"
+        android:name="com.example.parkingsystem.views.lista.ListaFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_lista" />
 
-    <!-- Definição da ação de navegação -->
     <action
-        android:id="@+id/action_home_to_dashboard"
-        app:destination="@id/navigation_dashboard" />
+        android:id="@+id/action_home_to_cadastro_estacionamentos"
+        app:destination="@id/navigation_cadastro_estacionamento" />
+
+    <action
+        android:id="@+id/action_home_to_cadastro"
+        app:destination="@id/navigation_cadastro" />
 </navigation>

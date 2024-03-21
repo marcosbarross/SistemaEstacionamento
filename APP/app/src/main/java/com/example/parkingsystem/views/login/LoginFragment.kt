@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.login
+package com.example.parkingsystem.views.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.UsuariosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils
@@ -18,8 +20,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginFragment : Fragment() {
-    private lateinit var loginButton: Button
-    private lateinit var usuariosService: UsuariosService
+    private lateinit var loginButton : Button
+    private lateinit var usuariosService : UsuariosService
+    private lateinit var inscreverLabel : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +41,6 @@ class LoginFragment : Fragment() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
                         Toast.makeText(context, "Autenticação bem-sucedida", Toast.LENGTH_SHORT).show()
-                        // Faça o que precisa ser feito após a autenticação bem-sucedida
                     } else {
                         Toast.makeText(context, "Credenciais inválidas", Toast.LENGTH_SHORT).show()
                     }
@@ -49,6 +51,12 @@ class LoginFragment : Fragment() {
                 }
             })
         }
+
+        inscreverLabel = view.findViewById(R.id.inscreverLabel)
+        inscreverLabel.setOnClickListener {
+            findNavController().navigate(R.id.navigation_cadastro)
+        }
+
         return view
     }
 }

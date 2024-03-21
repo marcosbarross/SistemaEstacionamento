@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.lista
+package com.example.parkingsystem.views.lista
 
 import android.os.Bundle
 import android.view.LayoutInflater

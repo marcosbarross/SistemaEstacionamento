@@ -1,4 +1,4 @@
-package com.example.parkingsystem.ui.cadastro
+package com.example.parkingsystem.views.cadastro
 
 import android.os.Bundle
 import android.view.LayoutInflater

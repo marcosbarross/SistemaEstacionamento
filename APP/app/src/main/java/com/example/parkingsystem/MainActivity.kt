@@ -1,7 +1,6 @@
 package com.example.parkingsystem
 
 import android.os.Bundle
-import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_login
+                R.id.navigation_mapa, R.id.navigation_cadastro_estacionamento, R.id.navigation_lista, R.id.navigation_login
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
