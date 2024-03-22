@@ -1,194 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#111A28"
+tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
+
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#111A28"
-    android:orientation="vertical"
-    tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
-
-    <TextView
-        android:id="@+id/estacionamentoNomeLabel"
-        android:layout_width="308dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif"
-        android:text="Nome do estacionamento"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/background_color"
-        android:textSize="16sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nomeInput"
-            android:layout_width="306dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Digite o nome do estacionamento" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
-
-    <TextView
-        android:id="@+id/estacionamentoPrecoLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Preço"
-        android:textAlignment="center"
-        android:textColor="@color/background_color"
-        android:textSize="16sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/precoInput"
-            android:layout_width="312dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Digite o preço do estacionamento" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
-
-    <TextView
-        android:id="@+id/estacionemntoFuncionamentoLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Funcionamento"
-        android:textAlignment="center"
-        android:textColor="@color/background_color"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow
-            android:id="@+id/TimeLabels"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Abre às"
-                android:textColor="@color/background_color"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fecha às"
-                android:textColor="@color/background_color"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/TimeEditors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editTextTime3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-
-            <EditText
-                android:id="@+id/editTextTime4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-        </TableRow>
-    </TableLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
-
-    <TextView
-        android:id="@+id/tipoVagaLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tipo de vaga"
-        android:textAlignment="center"
-        android:textColor="@color/background_color"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="131dp"
+        <TextView
+            android:id="@+id/estacionamentoNomeLabel"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="Nome do estacionamento"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/background_color"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <EditText
+            android:id="@+id/nomeInput"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/garagem" />
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="#FFFFFF" />
 
         <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="10" />
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="132dp"
-            android:layout_height="114dp"
-            android:src="@mipmap/noventa" />
+        <TextView
+            android:id="@+id/estacionamentoPrecoLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço"
+            android:textAlignment="center"
+            android:textColor="@color/background_color"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/precoInput"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF" />
 
         <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="10" />
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="109dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@mipmap/baliza" />
+        <TextView
+            android:id="@+id/estacionamentoFuncionamentoLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Funcionamento"
+            android:textAlignment="center"
+            android:textColor="@color/background_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:id="@+id/TimeLabels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Abre às"
+                    android:textColor="@color/background_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha às"
+                    android:textColor="@color/background_color"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TimeEditors"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/editTextTime3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="time" />
+
+                <EditText
+                    android:id="@+id/editTextTime4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="time" />
+            </TableRow>
+        </TableLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <TextView
+            android:id="@+id/estacionamentoHorarioLabel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="10" />
+            android:text="Horário"
+            android:textAlignment="center"
+            android:textColor="@color/background_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/checkBoxSegunda"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Segunda"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxTerca"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Terça"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxQuarta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quarta"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxQuinta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quinta"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/checkBoxSexta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sexta"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxSabado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sábado"
+                    android:textColor="#FFFFFF" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxDomingo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Domingo"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tipoVagaLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de vaga"
+            android:textAlignment="center"
+            android:textColor="@color/background_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="131dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/garagem" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="132dp"
+                android:layout_height="114dp"
+                android:src="@mipmap/noventa" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="109dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/baliza" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
+            android:textStyle="bold" />
+
+
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50px" />
+</ScrollView>
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastrar"
-        android:textStyle="bold" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

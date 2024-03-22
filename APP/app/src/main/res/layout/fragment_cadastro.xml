@@ -22,17 +22,12 @@
             android:layout_height="wrap_content"
             android:text="Nome" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/editTextText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nomeUsuarioInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Insira seu nome completo" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
 
         <Space
             android:layout_width="match_parent"
@@ -44,16 +39,12 @@
             android:layout_height="wrap_content"
             android:text="E-mail" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/editTextTextEmailAddress2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Insira um e-mail válido" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
 
         <Space
             android:layout_width="match_parent"
@@ -65,15 +56,12 @@
             android:layout_height="wrap_content"
             android:text="Senha" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Insira uma senha de ao menos 6 caracteres" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
 
         <Space
             android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import com.example.parkingsystem.R
 import com.example.parkingsystem.databinding.FragmentCadastroEstacionamentosBinding
@@ -24,8 +25,8 @@ class CadastroEstacionamentoFragment : Fragment() {
     private var _binding: FragmentCadastroEstacionamentosBinding? = null
     private val binding get() = _binding!!
     private lateinit var submitButton : Button
-    private lateinit var nomeInput : TextInputEditText
-    private lateinit var precoInput : TextInputEditText
+    private lateinit var nomeInput : AppCompatEditText
+    private lateinit var precoInput : AppCompatEditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
