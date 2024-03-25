@@ -98,7 +98,8 @@ async def autenticar_usuario(usuario: UsuarioAuth):
     
     id, nome, email_db, senha_db = usuario
     if senha == senha_db:
-        return {"status_code": 200}
+        return {"status_code": 200, "id_usuario": id}
+    
     else:
         raise HTTPException(status_code=401, detail="Credenciais inválidas")
 

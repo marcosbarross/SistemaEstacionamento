@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class apiUtils {
     companion object {
-        val path = "http://192.168.51.231:8000/"
+        val path = "http://10.0.0.144:8000/"
 
         fun getRetrofitInstance(path: String): Retrofit {
             return Retrofit.Builder()

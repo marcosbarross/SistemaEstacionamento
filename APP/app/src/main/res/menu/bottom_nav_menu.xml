@@ -7,11 +7,6 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_cadastro_estacionamento"
-        android:icon="@android:drawable/ic_menu_add"
-        android:title="@string/title_dashboard" />
-
-    <item
         android:id="@+id/navigation_lista"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="@string/title_notifications" />

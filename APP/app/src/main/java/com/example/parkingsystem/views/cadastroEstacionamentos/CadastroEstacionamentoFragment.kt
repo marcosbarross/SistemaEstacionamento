@@ -15,8 +15,8 @@ import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
+import com.example.parkingsystem.views.login.LoginFragment
 import com.example.parkingsystem.views.mapa.MapaFragment
-import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,7 +72,7 @@ class CadastroEstacionamentoFragment : Fragment() {
             val longitude = MapaFragment.longitude
             val horarioAbertura = editTextTimeAbertura.text.toString()
             val horarioFechamento = editTextTimeFechamento.text.toString()
-            val idUsuario = 1
+            val idUsuario = LoginFragment.idUsuario
 
             val tipoVaga = mutableListOf<String>()
             if(checkboxVaga180.isChecked) tipoVaga.add("baliza")

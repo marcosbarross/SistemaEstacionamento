@@ -1,5 +1,6 @@
 package com.example.parkingsystem.views.login
 
+import UsuariosService
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
-import com.example.parkingsystem.controllers.APIControllers.UsuariosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.models.AuthResponse
 import com.example.parkingsystem.models.usuarioAuth
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,19 +38,29 @@ class LoginFragment : Fragment() {
             val usuario = usuarioAuth(email, senha)
 
             usuariosService = apiUtils.getRetrofitInstance(getPathString()).create(UsuariosService::class.java)
-            usuariosService.autenticarUsuario(usuario).enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            usuariosService.autenticarUsuario(usuario).enqueue(object : Callback<AuthResponse> {
+                override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(context, "Autenticação bem-sucedida", Toast.LENGTH_SHORT).show()
+                        val authResponse = response.body()
+                        if (authResponse != null) {
+                            val idUsuario = authResponse.userId
+                            IdLogin.idUsuario = idUsuario
+                            Toast.makeText(context, "Autenticação bem-sucedida", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "Resposta inválida do servidor", Toast.LENGTH_SHORT).show()
+                        }
                     } else {
                         Toast.makeText(context, "Credenciais inválidas", Toast.LENGTH_SHORT).show()
                     }
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                     Toast.makeText(context, "Erro ao se comunicar com o servidor", Toast.LENGTH_SHORT).show()
                 }
             })
+
+
+
         }
 
         inscreverLabel = view.findViewById(R.id.inscreverLabel)
@@ -58,5 +69,9 @@ class LoginFragment : Fragment() {
         }
 
         return view
+    }
+
+    companion object IdLogin {
+       var idUsuario : Int = Int.MIN_VALUE
     }
 }
