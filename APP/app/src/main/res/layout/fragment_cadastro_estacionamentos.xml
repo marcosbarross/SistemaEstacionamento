@@ -73,16 +73,6 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
             android:layout_width="match_parent"
             android:layout_height="50px" />
 
-        <TextView
-            android:id="@+id/estacionamentoFuncionamentoLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Funcionamento"
-            android:textAlignment="center"
-            android:textColor="@color/background_color"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="50px" />
@@ -123,14 +113,16 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="time" />
+                    android:inputType="time"
+                    android:textColor="#FFFFFF" />
 
                 <EditText
                     android:id="@+id/editTextTime4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="time" />
+                    android:inputType="time"
+                    android:textColor="#FFFFFF" />
             </TableRow>
         </TableLayout>
 
@@ -236,44 +228,39 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
             android:layout_width="match_parent"
             android:layout_height="50px" />
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="131dp"
-                android:layout_height="match_parent"
-                android:src="@mipmap/garagem" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10" />
+                <CheckBox
+                    android:id="@+id/vaga45"
+                    android:layout_width="119dp"
+                    android:layout_height="wrap_content"
+                    android:text="45º"
+                    android:textColor="#FFFFFF" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="132dp"
-                android:layout_height="114dp"
-                android:src="@mipmap/noventa" />
+                <CheckBox
+                    android:id="@+id/vaga90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="90º"
+                    android:textColor="#FFFFFF" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10" />
+                <CheckBox
+                    android:id="@+id/baliza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Baliza"
+                    android:textColor="#FFFFFF" />
+            </TableRow>
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="109dp"
-                android:layout_height="match_parent"
-                android:src="@mipmap/baliza" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10" />
-        </LinearLayout>
+        </TableLayout>
 
         <Space
             android:layout_width="match_parent"

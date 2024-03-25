@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List
+from datetime import datetime, timedelta
 import psycopg2
 
 conn = psycopg2.connect(
@@ -13,7 +14,7 @@ cur = conn.cursor()
 
 # Cria a tabela se não existir
 cur.execute("""
-    CREATE TABLE usuarios (
+    CREATE TABLE IF NOT EXISTS usuarios (
         id SERIAL PRIMARY KEY,
         nome VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
@@ -21,17 +22,17 @@ cur.execute("""
         tipo_veiculo VARCHAR(50)
     );
 
-    CREATE TABLE estacionamentos (
+    CREATE TABLE IF NOT EXISTS estacionamentos (
         id SERIAL PRIMARY KEY,
         nome VARCHAR(255) NOT NULL,
-        lotacao INT,
-        tipo_vaga VARCHAR(50),
-        horario_funcionamento INTERVAL,
+        tipo_vaga VARCHAR(50)[],
+        horario_abertura varchar(20),
+        horario_fechamento varchar(20),
         dias_funcionamento VARCHAR(100)[],
         latitude DECIMAL(10, 8),
         longitude DECIMAL(11, 8),
         preco DECIMAL(10, 2),
-        id_usuario INT REFERENCES usuario(id)
+        id_usuario INT REFERENCES usuarios(id)
     );
 """)
 conn.commit()
@@ -39,9 +40,9 @@ conn.commit()
 # Classe modelo para os dados do estacionamento
 class Estacionamento(BaseModel):
     nome: str
-    lotacao: int
-    tipo_vaga: str
-    horario_funcionamento: str
+    tipo_vaga: List[str]
+    horario_abertura: str 
+    horario_fechamento: str 
     dias_funcionamento: List[str]
     latitude: float
     longitude: float
@@ -62,25 +63,27 @@ class UsuarioAuth(BaseModel):
 app = FastAPI()
 
 # Endpoint para salvar um novo estacionamento
+
 @app.post("/AddEstacionamento/")
 async def criar_estacionamento(estacionamento: Estacionamento):
     cur.execute("""
-        INSERT INTO estacionamento (nome, lotacao, tipo_vaga, horario_funcionamento, dias_funcionamento, latitude, longitude, preco, id_usuario)
+        INSERT INTO estacionamentos (nome, tipo_vaga, horario_abertura, horario_fechamento, dias_funcionamento, latitude, longitude, preco, id_usuario)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         RETURNING id
-    """, (estacionamento.nome, estacionamento.lotacao, estacionamento.tipo_vaga, estacionamento.horario_funcionamento, estacionamento.dias_funcionamento, estacionamento.latitude, estacionamento.longitude, estacionamento.preco, estacionamento.id_usuario))
+    """, (estacionamento.nome, estacionamento.tipo_vaga, estacionamento.horario_abertura, estacionamento.horario_fechamento, estacionamento.dias_funcionamento, estacionamento.latitude, estacionamento.longitude, estacionamento.preco, estacionamento.id_usuario))
     id = cur.fetchone()[0]
     conn.commit()
     return {"id": id, **estacionamento.dict()}
 
+
 # Endpoint para retornar todos os estacionamentos salvos
 @app.get("/GetEstacionamentos/")
 async def listar_estacionamentos():
-    cur.execute("SELECT * FROM estacionamento")
+    cur.execute("SELECT * FROM estacionamentos")
     estacionamentos = []
     for row in cur.fetchall():
-        id, nome, lotacao, tipo_vaga, horario_funcionamento, dias_funcionamento, latitude, longitude, preco, id_usuario = row
-        estacionamentos.append({"id": id, "nome": nome, "lotacao": lotacao, "tipo_vaga": tipo_vaga, "horario_funcionamento": horario_funcionamento, "dias_funcionamento": dias_funcionamento, "latitude": latitude, "longitude": longitude, "preco": preco, "id_usuario": id_usuario})
+        id, nome, tipo_vaga, horario_abertura, horario_fechamento, dias_funcionamento, latitude, longitude, preco, id_usuario = row
+        estacionamentos.append({"id": id, "nome": nome, "tipo_vaga": tipo_vaga, "horario_abertura": horario_abertura, "horario_fechamento": horario_fechamento, "dias_funcionamento": dias_funcionamento, "latitude": latitude, "longitude": longitude, "preco": preco, "id_usuario": id_usuario})
     return estacionamentos
 
 # Endpoint para autenticar usuário
@@ -88,7 +91,7 @@ async def listar_estacionamentos():
 async def autenticar_usuario(usuario: UsuarioAuth):
     email = usuario.email
     senha = usuario.senha
-    cur.execute("SELECT id, nome, email, senha FROM usuario WHERE email = %s", (email,))
+    cur.execute("SELECT id, nome, email, senha FROM usuarios WHERE email = %s", (email,))
     usuario = cur.fetchone()
     if usuario is None:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
@@ -103,7 +106,7 @@ async def autenticar_usuario(usuario: UsuarioAuth):
 @app.post("/AddUsuario/")
 async def criar_usuario(usuario: Usuario):
     cur.execute("""
-        INSERT INTO usuario (nome, email, senha, tipo_veiculo)
+        INSERT INTO usuarios (nome, email, senha, tipo_veiculo)
         VALUES (%s, %s, %s, %s)
         RETURNING id
 """, (usuario.nome, usuario.email, usuario.senha, usuario.tipo_veiculo))
