@@ -23,23 +23,23 @@ import retrofit2.Response
 
 class CadastroEstacionamentoFragment : Fragment() {
 
-    private var _binding: FragmentCadastroEstacionamentosBinding? = null
+    private var _binding : FragmentCadastroEstacionamentosBinding? = null
     private val binding get() = _binding!!
-    private lateinit var submitButton: Button
-    private lateinit var nomeInput: AppCompatEditText
-    private lateinit var precoInput: AppCompatEditText
-    private lateinit var checkboxSegunda: CheckBox
-    private lateinit var checkboxTerca: CheckBox
-    private lateinit var checkboxQuarta: CheckBox
-    private lateinit var checkboxQuinta: CheckBox
-    private lateinit var checkboxSexta: CheckBox
-    private lateinit var checkboxSabado: CheckBox
+    private lateinit var submitButton : Button
+    private lateinit var nomeInput : AppCompatEditText
+    private lateinit var precoInput : AppCompatEditText
+    private lateinit var checkboxSegunda : CheckBox
+    private lateinit var checkboxTerca : CheckBox
+    private lateinit var checkboxQuarta : CheckBox
+    private lateinit var checkboxQuinta : CheckBox
+    private lateinit var checkboxSexta : CheckBox
+    private lateinit var checkboxSabado : CheckBox
     private lateinit var checkboxDomingo: CheckBox
     private lateinit var checkboxVaga45 : CheckBox
     private lateinit var checkboxVaga90 : CheckBox
     private lateinit var checkboxVaga180 : CheckBox
-    private lateinit var editTextTimeAbertura: AppCompatEditText
-    private lateinit var editTextTimeFechamento: AppCompatEditText
+    private lateinit var editTextTimeAbertura : AppCompatEditText
+    private lateinit var editTextTimeFechamento : AppCompatEditText
 
     override fun onCreateView(
         inflater: LayoutInflater,

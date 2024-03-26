@@ -23,7 +23,7 @@
             android:text="Nome" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/nomeUsuarioInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -40,7 +40,7 @@
             android:text="E-mail" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress2"
+            android:id="@+id/emailUsuarioInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -57,7 +57,7 @@
             android:text="Senha" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/senhaUsuarioInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -66,6 +66,44 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="50px" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <TextView
+            android:id="@+id/tipoVeiculoLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Tipo de veículo"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50px" />
+
+        <RadioGroup
+            android:id="@+id/tipoVeiculoGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonMoto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Moto" />
+
+            <RadioButton
+                android:id="@+id/radioButtonCarro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Carro" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/cadastrarUsuarioButton"

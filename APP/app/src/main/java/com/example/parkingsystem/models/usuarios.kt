@@ -8,7 +8,9 @@ data class usuarios(
     @SerializedName("email")
     var email : String,
     @SerializedName("senha")
-    var senha : String
+    var senha : String,
+    @SerializedName("tipo_veiculo")
+    var tipoVeiculo : String
 )
 
 data class usuarioAuth(
