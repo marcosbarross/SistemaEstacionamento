@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface PontosService {
-    @GET("GetEstacionamentos/")
+    @GET("/GetEstacionamentos/")
     fun getPoints(): Call<List<pontos>>
 
     @POST("/AddEstacionamento/")
