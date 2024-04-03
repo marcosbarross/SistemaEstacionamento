@@ -13,7 +13,7 @@ class EstacionamentoAdapter(private val estacionamentos: List<pontos>) :
 
     inner class EstacionamentoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeTextView: TextView = itemView.findViewById(R.id.nomeTextView)
-        val tipoVagaTextView: TextView = itemView.findViewById(R.id.tipoVagaTextView)
+        val precoTextView: TextView = itemView.findViewById(R.id.precoTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstacionamentoViewHolder {
@@ -25,7 +25,7 @@ class EstacionamentoAdapter(private val estacionamentos: List<pontos>) :
     override fun onBindViewHolder(holder: EstacionamentoViewHolder, position: Int) {
         val estacionamento = estacionamentos[position]
         holder.nomeTextView.text = estacionamento.nome
-        holder.tipoVagaTextView.text = estacionamento.tipo_vaga.joinToString(", ")
+        holder.precoTextView.text = estacionamento.preco.toString()
     }
 
     override fun getItemCount(): Int {

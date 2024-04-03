@@ -22,6 +22,7 @@ import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.permissionsControllers.PermissionController
+import com.example.parkingsystem.views.usuario.LoginFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -79,7 +80,12 @@ class MapaFragment : Fragment() {
                 latitude = latLng.latitude
                 longitude = latLng.longitude
 
-                findNavController().navigate(R.id.action_home_to_cadastro_estacionamentos)
+                if (LoginFragment.idUsuario == Int.MIN_VALUE) {
+                    findNavController().navigate(R.id.action_to_login)
+                } else {
+                    findNavController().navigate(R.id.action_home_to_cadastro_estacionamentos)
+                }
+
             }
 
         }

@@ -11,6 +11,7 @@ import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.g
 import com.example.parkingsystem.controllers.listaControllers.EstacionamentoAdapter
 import com.example.parkingsystem.databinding.FragmentListaBinding
 import com.example.parkingsystem.models.pontos
+import androidx.recyclerview.widget.LinearLayoutManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,6 +63,7 @@ class ListaFragment : Fragment() {
     private fun exibirEstacionamentos(estacionamentos: List<pontos>) {
         val adapter = EstacionamentoAdapter(estacionamentos)
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
 

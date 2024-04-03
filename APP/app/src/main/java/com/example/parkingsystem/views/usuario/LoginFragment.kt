@@ -1,4 +1,4 @@
-package com.example.parkingsystem.views.login
+package com.example.parkingsystem.views.usuario
 
 import UsuariosService
 import android.os.Bundle
@@ -46,6 +46,7 @@ class LoginFragment : Fragment() {
                             val idUsuario = authResponse.userId
                             IdLogin.idUsuario = idUsuario
                             Toast.makeText(context, "Autenticação bem-sucedida", Toast.LENGTH_SHORT).show()
+                            findNavController().navigate(R.id.action_to_mapa)
                         } else {
                             Toast.makeText(context, "Resposta inválida do servidor", Toast.LENGTH_SHORT).show()
                         }

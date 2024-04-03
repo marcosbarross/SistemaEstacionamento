@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="50px"
     android:paddingRight="50px"
-    tools:context=".views.login.LoginFragment">
+    tools:context=".views.usuario.LoginFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

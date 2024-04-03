@@ -15,7 +15,7 @@ import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
-import com.example.parkingsystem.views.login.LoginFragment
+import com.example.parkingsystem.views.usuario.LoginFragment
 import com.example.parkingsystem.views.mapa.MapaFragment
 import retrofit2.Call
 import retrofit2.Callback

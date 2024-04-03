@@ -1,4 +1,4 @@
-package com.example.parkingsystem.views.cadastro
+package com.example.parkingsystem.views.usuario
 
 import UsuariosService
 import android.os.Bundle
@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.apiUtils
 import com.example.parkingsystem.databinding.FragmentCadastroBinding
-import com.example.parkingsystem.databinding.FragmentCadastroEstacionamentosBinding
 import com.example.parkingsystem.models.usuarios
 import retrofit2.Call
 import retrofit2.Callback
