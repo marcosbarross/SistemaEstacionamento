@@ -234,12 +234,13 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <CheckBox
                     android:id="@+id/vaga45"
                     android:layout_width="119dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="45º"
                     android:textColor="#FFFFFF" />
 
@@ -248,6 +249,7 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="90º"
                     android:textColor="#FFFFFF" />
 
@@ -256,8 +258,35 @@ tools:context=".views.cadastroEstacionamentos.CadastroEstacionamentoFragment">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="Baliza"
                     android:textColor="#FFFFFF" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/sessenta" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="103dp"
+                    android:layout_height="83dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/garagem" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="138dp"
+                    android:layout_height="83dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/baliza" />
             </TableRow>
 
         </TableLayout>

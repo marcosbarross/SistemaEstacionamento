@@ -11,7 +11,6 @@
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
 
-    <!-- Definição dos outros fragmentos -->
     <fragment
         android:id="@+id/navigation_mapa"
         android:name="com.example.parkingsystem.views.mapa.MapaFragment"
@@ -42,6 +41,13 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_lista" />
 
+    <fragment
+        android:id="@+id/navigation_perfil_usuario"
+        android:name="com.example.parkingsystem.views.usuario.PerfilUsuarioFragment"
+        android:label="@string/title_perfil"
+        tools:layout="@layout/fragment_perfil_usuario"
+        />
+
     <action
         android:id="@+id/action_home_to_cadastro_estacionamentos"
         app:destination="@id/navigation_cadastro_estacionamento" />
@@ -57,6 +63,11 @@
     <action
         android:id="@+id/action_to_mapa"
         app:destination="@id/navigation_mapa"
+        />
+
+    <action
+        android:id="@+id/action_to_perfil_usuario"
+        app:destination="@id/navigation_perfil_usuario"
         />
 
 </navigation>
