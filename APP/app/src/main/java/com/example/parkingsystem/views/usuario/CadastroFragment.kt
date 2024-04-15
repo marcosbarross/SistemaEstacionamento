@@ -66,17 +66,11 @@ class CadastroFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<Void>, t: Throwable) {
-                        // Erro de conexão
-                        // Você pode implementar aqui as ações para lidar com erros de conexão
-                        // Por exemplo, exibir uma mensagem de erro ao usuário
-                        // Exemplo: Toast.makeText(requireContext(), "Erro de conexão", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Erro de conexão", Toast.LENGTH_SHORT).show()
                     }
                 })
             } else {
-                // Campos não preenchidos
-                // Você pode implementar aqui as ações para lidar com campos não preenchidos
-                // Por exemplo, exibir uma mensagem informando ao usuário que todos os campos devem ser preenchidos
-                // Exemplo: Toast.makeText(requireContext(), "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show()
             }
         }
 

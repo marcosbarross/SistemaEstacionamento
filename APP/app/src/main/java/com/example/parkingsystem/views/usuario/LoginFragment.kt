@@ -59,9 +59,6 @@ class LoginFragment : Fragment() {
                     Toast.makeText(context, "Erro ao se comunicar com o servidor", Toast.LENGTH_SHORT).show()
                 }
             })
-
-
-
         }
 
         inscreverLabel = view.findViewById(R.id.inscreverLabel)

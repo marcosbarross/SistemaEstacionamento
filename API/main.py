@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List
+from math import radians, sin, cos, sqrt, atan2
 from datetime import datetime, timedelta
 import psycopg2
 
@@ -75,17 +76,6 @@ async def criar_estacionamento(estacionamento: Estacionamento):
     conn.commit()
     return {"id": id, **estacionamento.dict()}
 
-
-# Endpoint para retornar todos os estacionamentos salvos
-@app.get("/GetEstacionamentos/")
-async def listar_estacionamentos():
-    cur.execute("SELECT * FROM estacionamentos")
-    estacionamentos = []
-    for row in cur.fetchall():
-        id, nome, tipo_vaga, horario_abertura, horario_fechamento, dias_funcionamento, latitude, longitude, preco, id_usuario = row
-        estacionamentos.append({"id": id, "nome": nome, "tipo_vaga": tipo_vaga, "horario_abertura": horario_abertura, "horario_fechamento": horario_fechamento, "dias_funcionamento": dias_funcionamento, "latitude": latitude, "longitude": longitude, "preco": preco, "id_usuario": id_usuario})
-    return estacionamentos
-
 # Endpoint para autenticar usuário
 @app.post("/AutenticarUsuario/")
 async def autenticar_usuario(usuario: UsuarioAuth):
@@ -114,3 +104,34 @@ async def criar_usuario(usuario: Usuario):
     id = cur.fetchone()[0]
     conn.commit()
     return {"id": id, **usuario.dict()}
+
+# Endpoint para retornar todos os estacionamentos salvos
+@app.get("/GetEstacionamentos/")
+async def listar_estacionamentos():
+    cur.execute("SELECT * FROM estacionamentos")
+    estacionamentos = []
+    for row in cur.fetchall():
+        id, nome, tipo_vaga, horario_abertura, horario_fechamento, dias_funcionamento, latitude, longitude, preco, id_usuario = row
+        estacionamentos.append({"id": id, "nome": nome, "tipo_vaga": tipo_vaga, "horario_abertura": horario_abertura, "horario_fechamento": horario_fechamento, "dias_funcionamento": dias_funcionamento, "latitude": latitude, "longitude": longitude, "preco": preco, "id_usuario": id_usuario})
+    return estacionamentos
+
+# Endpoint para calcular distancia entre dois pontos
+@app.get("/CalcularDistancia/")
+async def calcular_distancia_entre_pontos(lat1: float, lon1: float, lat2: float, lon2: float):
+    raio_terra = 6371.0
+    
+    # Converte graus para radianos
+    lat1 = radians(lat1)
+    lon1 = radians(lon1)
+    lat2 = radians(lat2)
+    lon2 = radians(lon2)
+    
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    
+    # Fórmula de Haversine
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distancia = raio_terra * c
+
+    return {"distancia_km": round(distancia, 2)}
