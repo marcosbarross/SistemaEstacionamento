@@ -9,14 +9,15 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.parkingsystem.R
 import com.example.parkingsystem.databinding.FragmentCadastroEstacionamentosBinding
 import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
-import com.example.parkingsystem.views.usuario.LoginFragment
 import com.example.parkingsystem.views.mapa.MapaFragment
+import com.example.parkingsystem.views.usuario.SharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,6 +41,7 @@ class CadastroEstacionamentoFragment : Fragment() {
     private lateinit var checkboxVaga180 : CheckBox
     private lateinit var editTextTimeAbertura : AppCompatEditText
     private lateinit var editTextTimeFechamento : AppCompatEditText
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,7 +74,7 @@ class CadastroEstacionamentoFragment : Fragment() {
             val longitude = MapaFragment.longitude
             val horarioAbertura = editTextTimeAbertura.text.toString()
             val horarioFechamento = editTextTimeFechamento.text.toString()
-            val idUsuario = LoginFragment.idUsuario
+            val idUsuario = sharedViewModel.userId
 
             val tipoVaga = mutableListOf<String>()
             if(checkboxVaga180.isChecked) tipoVaga.add("baliza")
@@ -88,23 +90,25 @@ class CadastroEstacionamentoFragment : Fragment() {
             if (checkboxSabado.isChecked) diasFuncionamento.add("Sábado")
             if (checkboxDomingo.isChecked) diasFuncionamento.add("Domingo")
 
-            val ponto = pontos(nomeEstacionamento, tipoVaga, horarioAbertura, horarioFechamento, diasFuncionamento, longitude, latitude, precoEstacionamento, idUsuario)
-            val pontosService = getRetrofitInstance(getPathString()).create(PontosService::class.java)
+            sharedViewModel.userId.observe(viewLifecycleOwner) { userId ->
+                val ponto = pontos(nomeEstacionamento, tipoVaga, horarioAbertura, horarioFechamento, diasFuncionamento, longitude, latitude, precoEstacionamento, userId)
+                val pontosService = getRetrofitInstance(getPathString()).create(PontosService::class.java)
 
-            val call = pontosService.addPoint(ponto)
-            call.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    if (response.isSuccessful) {
-                        Toast.makeText(requireContext(), "Estacionamento cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(requireContext(), "Falha ao cadastrar estacionamento. Tente novamente.", Toast.LENGTH_SHORT).show()
+                val call = pontosService.addPoint(ponto)
+                call.enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(requireContext(), "Estacionamento cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Falha ao cadastrar estacionamento. Tente novamente.", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Toast.makeText(requireContext(), "Erro de conexão ao cadastrar estacionamento. Verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show()
-                }
-            })
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(requireContext(), "Erro de conexão ao cadastrar estacionamento. Verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
         }
 
         return root

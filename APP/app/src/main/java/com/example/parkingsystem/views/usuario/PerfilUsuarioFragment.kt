@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 
 class PerfilUsuarioFragment : Fragment() {
     private lateinit var sairButton : Button
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,8 +23,9 @@ class PerfilUsuarioFragment : Fragment() {
         sairButton = rootView.findViewById(R.id.logoutUserButton)
 
         sairButton.setOnClickListener{
-            LoginFragment.IdLogin.idUsuario = Int.MIN_VALUE
-            findNavController().navigate(R.id.navigation_login)
+            sharedViewModel.setUserId(Int.MIN_VALUE)
+            sharedViewModel.setLogged(false)
+            findNavController().navigate(R.id.navigation_mapa)
         }
 
         return rootView

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.listaControllers.EstacionamentoAdapter
+import com.example.parkingsystem.controllers.locationController.LocationController
 import com.example.parkingsystem.databinding.FragmentListaBinding
 import com.example.parkingsystem.models.pontos
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,7 +62,15 @@ class ListaFragment : Fragment() {
     }
 
     private fun exibirEstacionamentos(estacionamentos: List<pontos>) {
-        val adapter = EstacionamentoAdapter(estacionamentos)
+        val locationController = LocationController(this, object : LocationController.LocationCallback {
+            override fun onLocationReceived(latitude: Double, longitude: Double) {
+            }
+
+            override fun onLocationFailed() {
+            }
+        })
+
+        val adapter = EstacionamentoAdapter(estacionamentos, locationController)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

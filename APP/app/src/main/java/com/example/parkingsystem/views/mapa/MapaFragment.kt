@@ -17,12 +17,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.location.LocationServices
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.PontosService
 import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
 import com.example.parkingsystem.controllers.permissionsControllers.PermissionController
-import com.example.parkingsystem.views.usuario.LoginFragment
+import com.example.parkingsystem.views.usuario.SharedViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,9 +36,8 @@ class MapaFragment : Fragment() {
     private lateinit var mMap: GoogleMap
     private lateinit var floatingActionButton : FloatingActionButton
     private lateinit var permissionController: PermissionController
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -80,12 +80,13 @@ class MapaFragment : Fragment() {
                 latitude = latLng.latitude
                 longitude = latLng.longitude
 
-                if (LoginFragment.idUsuario == Int.MIN_VALUE) {
-                    findNavController().navigate(R.id.action_to_login)
-                } else {
-                    findNavController().navigate(R.id.action_home_to_cadastro_estacionamentos)
+                sharedViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
+                    if (isLogged) {
+                        findNavController().navigate(R.id.action_home_to_cadastro_estacionamentos)
+                    } else {
+                        findNavController().navigate(R.id.action_to_login)
+                    }
                 }
-
             }
 
         }

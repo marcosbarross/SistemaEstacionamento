@@ -1,5 +1,6 @@
 package com.example.parkingsystem.models
 
+import androidx.lifecycle.LiveData
 import com.google.gson.annotations.SerializedName
 
 data class pontos(
