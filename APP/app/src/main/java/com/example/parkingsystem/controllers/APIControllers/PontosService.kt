@@ -2,6 +2,7 @@ package com.example.parkingsystem.controllers.APIControllers
 
 import com.example.parkingsystem.models.DistanciaResponse
 import com.example.parkingsystem.models.pontos
+import com.example.parkingsystem.models.pontosOrdenados
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,4 +22,10 @@ interface PontosService {
         @Query("lat2") lat2: Double,
         @Query("lon2") lon2: Double
     ): Call<DistanciaResponse>
+
+    @GET("/GetEstacionamentosOrdenados/")
+    fun getEstacionamentosOrdenados(
+        @Query("lat") lat : Double,
+        @Query("lon") lon : Double
+    ) : Call <List<pontosOrdenados>>
 }

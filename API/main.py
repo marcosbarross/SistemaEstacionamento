@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List
 from math import radians, sin, cos, sqrt, atan2
+from operator import itemgetter
 from datetime import datetime, timedelta
 import psycopg2
 
@@ -135,3 +136,17 @@ async def calcular_distancia_entre_pontos(lat1: float, lon1: float, lat2: float,
     distancia = raio_terra * c
 
     return {"distancia_km": round(distancia, 2)}
+
+@app.get("/GetEstacionamentosOrdenados/")
+async def listar_estacionamentos_ordenados(lat: float, lon: float):
+    cur.execute("SELECT * FROM estacionamentos")
+    estacionamentos = []
+    for row in cur.fetchall():
+        id, nome, tipo_vaga, horario_abertura, horario_fechamento, dias_funcionamento, latitude, longitude, preco, id_usuario = row
+        distancia = await calcular_distancia_entre_pontos(latitude, longitude, lat, lon)
+        estacionamentos.append({"id": id, "nome": nome, "tipo_vaga": tipo_vaga, "horario_abertura": horario_abertura, "horario_fechamento": horario_fechamento, "dias_funcionamento": dias_funcionamento, "latitude": latitude, "longitude": longitude, "preco": preco, "id_usuario": id_usuario, "distancia_km": distancia["distancia_km"]})
+    
+    # Ordenar os estacionamentos pela distância
+    estacionamentos_ordenados = sorted(estacionamentos, key=itemgetter('distancia_km'))
+    
+    return estacionamentos_ordenados

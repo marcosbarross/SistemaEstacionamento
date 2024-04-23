@@ -9,6 +9,7 @@ import com.example.parkingsystem.models.pontos
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.pontosController
 import com.example.parkingsystem.controllers.locationController.LocationController
+import com.example.parkingsystem.models.pontosOrdenados
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EstacionamentoAdapter(
-    private val estacionamentos: List<pontos>,
+    private val estacionamentos: List<pontosOrdenados>,
     private val locationController: LocationController
 ) :
     RecyclerView.Adapter<EstacionamentoAdapter.EstacionamentoViewHolder>() {
@@ -41,15 +42,12 @@ class EstacionamentoAdapter(
             val longitude = withContext(Dispatchers.Main) {
                 locationController.getLongitude()
             }
-            val distancia = pontosController.getDistancia(estacionamento.latitude, estacionamento.longitude, latitude, longitude)
             withContext(Dispatchers.Main) {
                 holder.nomeTextView.text = estacionamento.nome
-                holder.infoTextView.text = "${distancia} km, R$ ${estacionamento.preco.toString()}"
+                holder.infoTextView.text = "${estacionamento.distancia_km} km, R$ ${estacionamento.preco.toString()}"
             }
         }
     }
-
-
 
     override fun getItemCount(): Int {
         return estacionamentos.size
