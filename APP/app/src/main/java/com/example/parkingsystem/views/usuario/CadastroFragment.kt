@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.APIControllers.apiUtils
 import com.example.parkingsystem.databinding.FragmentCadastroBinding
-import com.example.parkingsystem.models.usuarios
+import com.example.parkingsystem.models.usuario
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,7 +51,7 @@ class CadastroFragment : Fragment() {
             val tipoVeiculo = if (tipoVeiculoCarro.isChecked) "Carro" else "Moto"
 
             if (nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty()) {
-                val novoUsuario = usuarios(nome, email, senha, tipoVeiculo)
+                val novoUsuario = usuario(nome, email, senha, tipoVeiculo)
 
                 val usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(UsuariosService::class.java)
 

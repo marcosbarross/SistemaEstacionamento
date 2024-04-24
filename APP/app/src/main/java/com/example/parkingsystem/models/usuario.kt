@@ -2,7 +2,7 @@ package com.example.parkingsystem.models
 
 import com.google.gson.annotations.SerializedName
 
-data class usuarios(
+data class usuario(
     @SerializedName("nome")
     var nome : String,
     @SerializedName("email")

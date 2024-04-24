@@ -77,34 +77,6 @@ async def criar_estacionamento(estacionamento: Estacionamento):
     conn.commit()
     return {"id": id, **estacionamento.dict()}
 
-# Endpoint para autenticar usuário
-@app.post("/AutenticarUsuario/")
-async def autenticar_usuario(usuario: UsuarioAuth):
-    email = usuario.email
-    senha = usuario.senha
-    cur.execute("SELECT id, nome, email, senha FROM usuarios WHERE email = %s", (email,))
-    usuario = cur.fetchone()
-    if usuario is None:
-        raise HTTPException(status_code=404, detail="Usuário não encontrado")
-    
-    id, nome, email_db, senha_db = usuario
-    if senha == senha_db:
-        return {"status_code": 200, "id_usuario": id}
-    
-    else:
-        raise HTTPException(status_code=401, detail="Credenciais inválidas")
-
-# Endpoint para salvar um novo usuário
-@app.post("/AddUsuario/")
-async def criar_usuario(usuario: Usuario):
-    cur.execute("""
-        INSERT INTO usuarios (nome, email, senha, tipo_veiculo)
-        VALUES (%s, %s, %s, %s)
-        RETURNING id
-""", (usuario.nome, usuario.email, usuario.senha, usuario.tipo_veiculo))
-    id = cur.fetchone()[0]
-    conn.commit()
-    return {"id": id, **usuario.dict()}
 
 # Endpoint para retornar todos os estacionamentos salvos
 @app.get("/GetEstacionamentos/")
@@ -150,3 +122,43 @@ async def listar_estacionamentos_ordenados(lat: float, lon: float):
     estacionamentos_ordenados = sorted(estacionamentos, key=itemgetter('distancia_km'))
     
     return estacionamentos_ordenados
+
+# Endpoint para autenticar usuário
+@app.post("/AutenticarUsuario/")
+async def autenticar_usuario(usuario: UsuarioAuth):
+    email = usuario.email
+    senha = usuario.senha
+    cur.execute("SELECT id, nome, email, senha FROM usuarios WHERE email = %s", (email,))
+    usuario = cur.fetchone()
+    if usuario is None:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
+    
+    id, nome, email_db, senha_db = usuario
+    if senha == senha_db:
+        return {"status_code": 200, "id_usuario": id}
+    
+    else:
+        raise HTTPException(status_code=401, detail="Credenciais inválidas")
+
+# Endpoint para salvar um novo usuário
+@app.post("/AddUsuario/")
+async def criar_usuario(usuario: Usuario):
+    cur.execute("""
+        INSERT INTO usuarios (nome, email, senha, tipo_veiculo)
+        VALUES (%s, %s, %s, %s)
+        RETURNING id
+""", (usuario.nome, usuario.email, usuario.senha, usuario.tipo_veiculo))
+    id = cur.fetchone()[0]
+    conn.commit()
+    return {"id": id, **usuario.dict()}
+
+# Endpoint para pegar usuário por ID
+@app.get("/UsuarioPorId/{usuario_id}")
+async def get_usuario_por_id(usuario_id: int):
+    cur.execute("SELECT id, nome, email, tipo_veiculo FROM usuarios WHERE id = %s", (usuario_id,))
+    usuario = cur.fetchone()
+    if usuario is None:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
+    
+    id, nome, email, tipo_veiculo = usuario
+    return {"id": id, "nome": nome, "email": email, "tipo_veiculo": tipo_veiculo}
