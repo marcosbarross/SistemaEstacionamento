@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
+import com.example.parkingsystem.controllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.databinding.FragmentMapaBinding
 import com.example.parkingsystem.models.pontos
 import com.google.android.gms.maps.GoogleMap
@@ -20,9 +20,9 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
-import com.example.parkingsystem.controllers.APIControllers.PontosService
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
-import com.example.parkingsystem.controllers.permissionsControllers.PermissionController
+import com.example.parkingsystem.interfaces.PontosService
+import com.example.parkingsystem.controllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.controllers.PermissionController
 import com.example.parkingsystem.views.usuario.SharedViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -88,7 +88,6 @@ class MapaFragment : Fragment() {
                     }
                 }
             }
-
         }
         floatingActionButton.setOnClickListener {
             val pontosService = getRetrofitInstance(getPathString()).create(
@@ -129,7 +128,6 @@ class MapaFragment : Fragment() {
                 }
             })
         }
-
         return root
     }
 

@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.parkingsystem.R
 import com.example.parkingsystem.databinding.FragmentCadastroEstacionamentosBinding
-import com.example.parkingsystem.controllers.APIControllers.PontosService
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getRetrofitInstance
+import com.example.parkingsystem.interfaces.PontosService
+import com.example.parkingsystem.controllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.controllers.apiUtils.Companion.getRetrofitInstance
 import com.example.parkingsystem.models.pontos
 import com.example.parkingsystem.views.mapa.MapaFragment
 import com.example.parkingsystem.views.usuario.SharedViewModel

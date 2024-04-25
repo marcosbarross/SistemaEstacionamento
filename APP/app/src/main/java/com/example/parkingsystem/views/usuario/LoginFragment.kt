@@ -1,6 +1,6 @@
 package com.example.parkingsystem.views.usuario
 
-import UsuariosService
+import com.example.parkingsystem.interfaces.UsuariosService
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,10 +13,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
-import com.example.parkingsystem.controllers.APIControllers.apiUtils
+import com.example.parkingsystem.controllers.apiUtils
+import com.example.parkingsystem.controllers.apiUtils.Companion.toSHA256
 import com.example.parkingsystem.models.AuthResponse
 import com.example.parkingsystem.models.usuarioAuth
-import com.example.parkingsystem.views.usuario.SharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,10 +40,11 @@ class LoginFragment : Fragment() {
             loginButton = view.findViewById(R.id.LoginButton)
             loginButton.setOnClickListener {
                 val email = view.findViewById<EditText>(R.id.emailInput).text.toString()
-                val senha = view.findViewById<EditText>(R.id.passwordInput).text.toString()
+                val senha = view.findViewById<EditText>(R.id.passwordInput).text.toString().toSHA256()
                 val usuario = usuarioAuth(email, senha)
 
-                usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(UsuariosService::class.java)
+                usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(
+                    UsuariosService::class.java)
                 usuariosService.autenticarUsuario(usuario).enqueue(object : Callback<AuthResponse> {
                     override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                         if (response.isSuccessful) {

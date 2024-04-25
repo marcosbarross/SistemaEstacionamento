@@ -1,7 +1,8 @@
-package com.example.parkingsystem.controllers.APIControllers
+package com.example.parkingsystem.controllers
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.security.MessageDigest
 
 class apiUtils {
     companion object {
@@ -16,6 +17,13 @@ class apiUtils {
 
         fun getPathString(): String {
             return path
+        }
+
+        fun String.toSHA256(): String {
+            val bytes = this.toByteArray()
+            val md = MessageDigest.getInstance("SHA-256")
+            val digest = md.digest(bytes)
+            return digest.fold("", { str, it -> str + "%02x".format(it) })
         }
     }
 }

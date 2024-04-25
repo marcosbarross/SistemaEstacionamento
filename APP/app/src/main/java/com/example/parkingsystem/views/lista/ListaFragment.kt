@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.parkingsystem.controllers.APIControllers.PontosService
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
-import com.example.parkingsystem.controllers.listaControllers.EstacionamentoAdapter
-import com.example.parkingsystem.controllers.locationController.LocationController
+import com.example.parkingsystem.interfaces.PontosService
+import com.example.parkingsystem.controllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.controllers.EstacionamentoAdapter
+import com.example.parkingsystem.controllers.LocationController
 import com.example.parkingsystem.databinding.FragmentListaBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parkingsystem.models.pontosOrdenados

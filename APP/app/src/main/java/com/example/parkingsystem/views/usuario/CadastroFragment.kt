@@ -1,6 +1,6 @@
 package com.example.parkingsystem.views.usuario
 
-import UsuariosService
+import com.example.parkingsystem.interfaces.UsuariosService
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,8 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
-import com.example.parkingsystem.controllers.APIControllers.apiUtils
+import com.example.parkingsystem.controllers.apiUtils
+import com.example.parkingsystem.controllers.apiUtils.Companion.toSHA256
 import com.example.parkingsystem.databinding.FragmentCadastroBinding
 import com.example.parkingsystem.models.usuario
 import retrofit2.Call
@@ -47,13 +48,14 @@ class CadastroFragment : Fragment() {
 
             val nome = nomeUsuario.text.toString()
             val email = emailUsuario.text.toString()
-            val senha = senha.text.toString()
+            val senha = senha.text.toString().toSHA256()
             val tipoVeiculo = if (tipoVeiculoCarro.isChecked) "Carro" else "Moto"
 
             if (nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty()) {
                 val novoUsuario = usuario(nome, email, senha, tipoVeiculo)
 
-                val usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(UsuariosService::class.java)
+                val usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(
+                    UsuariosService::class.java)
 
                 usuariosService.addUsuario(novoUsuario).enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
