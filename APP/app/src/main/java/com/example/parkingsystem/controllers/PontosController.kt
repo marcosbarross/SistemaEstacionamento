@@ -1,9 +1,8 @@
-package com.example.parkingsystem.controllers.APIControllers
+package com.example.parkingsystem.controllers
 
-import com.example.parkingsystem.controllers.APIControllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.controllers.apiUtils.Companion.getPathString
+import com.example.parkingsystem.interfaces.PontosService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 object pontosController {

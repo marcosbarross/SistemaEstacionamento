@@ -1,16 +1,12 @@
-package com.example.parkingsystem.controllers.listaControllers
+package com.example.parkingsystem.controllers
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.parkingsystem.models.pontos
 import com.example.parkingsystem.R
-import com.example.parkingsystem.controllers.APIControllers.pontosController
-import com.example.parkingsystem.controllers.locationController.LocationController
 import com.example.parkingsystem.models.pontosOrdenados
-import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

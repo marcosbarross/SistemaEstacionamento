@@ -1,3 +1,5 @@
+package com.example.parkingsystem.interfaces
+
 import com.example.parkingsystem.models.AuthResponse
 import com.example.parkingsystem.models.usuarioAuth
 import com.example.parkingsystem.models.usuario

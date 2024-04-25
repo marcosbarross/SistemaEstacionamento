@@ -1,4 +1,4 @@
-package com.example.parkingsystem.controllers.APIControllers
+package com.example.parkingsystem.interfaces
 
 import com.example.parkingsystem.models.DistanciaResponse
 import com.example.parkingsystem.models.pontos

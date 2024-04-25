@@ -1,4 +1,4 @@
-package com.example.parkingsystem.controllers.locationController
+package com.example.parkingsystem.controllers
 
 import android.Manifest
 import android.content.pm.PackageManager
