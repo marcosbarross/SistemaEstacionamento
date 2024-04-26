@@ -98,23 +98,31 @@ class MapaFragment : Fragment() {
                 override fun onResponse(call: Call<List<pontos>>, response: Response<List<pontos>>) {
                     if (response.isSuccessful) {
                         val pontos = response.body()
-                        pontos?.forEach { ponto ->
-                            val posicao = LatLng(ponto.latitude, ponto.longitude)
-                            mMap.addMarker(MarkerOptions().position(posicao).title(ponto.nome).snippet(
-                                "Preço: R$" + ponto.preco.toString()))
+                        pontos?.let {
+                            if (it.isNotEmpty()) {
+                                val builder = LatLngBounds.Builder()
+                                it.forEach { ponto ->
+                                    val posicao = LatLng(ponto.latitude, ponto.longitude)
+                                    mMap.addMarker(
+                                        MarkerOptions()
+                                            .position(posicao)
+                                            .title(ponto.nome)
+                                            .snippet("Preço: R$" + ponto.preco.toString())
+                                    )
+                                    builder.include(posicao)
+                                }
+                                val bounds = builder.build()
+                                val padding = 100
+                                val cameraUpdate = if (it.size == 1) {
+                                    CameraUpdateFactory.newLatLngZoom(bounds.center, 16f)
+                                } else {
+                                    CameraUpdateFactory.newLatLngBounds(bounds, padding)
+                                }
+                                mMap.animateCamera(cameraUpdate)
+                            } else {
+                                Toast.makeText(requireContext(), "Não há estacionamentos próximos", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                        val builder = LatLngBounds.Builder()
-                        pontos?.forEach { ponto ->
-                            val posicao = LatLng(ponto.latitude, ponto.longitude)
-                            builder.include(posicao)
-                        }
-                        val bounds = builder.build()
-                        val padding = 100
-                        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding)
-
-                        mMap.animateCamera(cameraUpdate)
-
-                        Toast.makeText(requireContext(), "Pontos sincronizados", Toast.LENGTH_SHORT).show()
                     } else {
                         val errorBody = response.errorBody()?.string()
                         Log.e("API_ERROR", "Erro de API: $errorBody")

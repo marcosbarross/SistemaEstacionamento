@@ -3,6 +3,7 @@ package com.example.parkingsystem.controllers
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.MessageDigest
+import android.util.Patterns
 
 class apiUtils {
     companion object {
@@ -25,5 +26,10 @@ class apiUtils {
             val digest = md.digest(bytes)
             return digest.fold("", { str, it -> str + "%02x".format(it) })
         }
+
+        fun isEmailValid(email: String): Boolean {
+            return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        }
+
     }
 }

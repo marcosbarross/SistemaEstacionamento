@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.parkingsystem.R
 import com.example.parkingsystem.controllers.apiUtils
+import com.example.parkingsystem.controllers.apiUtils.Companion.isEmailValid
 import com.example.parkingsystem.controllers.apiUtils.Companion.toSHA256
 import com.example.parkingsystem.databinding.FragmentCadastroBinding
 import com.example.parkingsystem.models.usuario
@@ -52,25 +53,30 @@ class CadastroFragment : Fragment() {
             val tipoVeiculo = if (tipoVeiculoCarro.isChecked) "Carro" else "Moto"
 
             if (nome.isNotEmpty() && email.isNotEmpty() && senha.isNotEmpty()) {
-                val novoUsuario = usuario(nome, email, senha, tipoVeiculo)
+                if (isEmailValid(email)){
+                    val novoUsuario = usuario(nome, email, senha, tipoVeiculo)
 
-                val usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(
-                    UsuariosService::class.java)
+                    val usuariosService = apiUtils.getRetrofitInstance(apiUtils.getPathString()).create(
+                        UsuariosService::class.java)
 
-                usuariosService.addUsuario(novoUsuario).enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        if (response.isSuccessful) {
-                            findNavController().navigate(R.id.navigation_login)
-                            Toast.makeText(requireContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(requireContext(), "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
+                    usuariosService.addUsuario(novoUsuario).enqueue(object : Callback<Void> {
+                        override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                            if (response.isSuccessful) {
+                                findNavController().navigate(R.id.navigation_login)
+                                Toast.makeText(requireContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(requireContext(), "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(requireContext(), "Erro de conexão", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onFailure(call: Call<Void>, t: Throwable) {
+                            Toast.makeText(requireContext(), "Erro de conexão", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                }
+                else{
+                    Toast.makeText(requireContext(), "insira um e-mail válido", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(requireContext(), "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show()
             }
