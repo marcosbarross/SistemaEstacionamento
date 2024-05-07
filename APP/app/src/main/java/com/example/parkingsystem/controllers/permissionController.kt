@@ -17,7 +17,7 @@ class PermissionController(private val activity: Activity) {
         }
     }
 
-    private fun requestPermission() {
+    fun requestPermission() {
         ActivityCompat.requestPermissions(
             activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
         )
